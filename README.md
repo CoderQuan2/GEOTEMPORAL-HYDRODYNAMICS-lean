@@ -1,3 +1,8 @@
+![Build: Passing](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge&logo=linux)
+![Verification: Lean 4](https://img.shields.io/badge/Verification-Lean_4-blue?style=for-the-badge)
+![Framework: PhysLib](https://img.shields.io/badge/Framework-PhysLib_2026-purple?style=for-the-badge)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+[![DOI: Pending](https://img.shields.io/badge/DOI-Zenodo_Archive-black?style=for-the-badge)](#)
 # GEOTEMPORAL-HYDRODYNAMICS-lean
 
 # Geotemporal Hydrodynamics: A Verified Axiomatic Framework
