@@ -9,13 +9,13 @@
 # Geotemporal Hydrodynamics: A Verified Axiomatic Framework
 
 **Author:** T Abram  
-**Verification Target:** Lean 4 / Mathlib4 (V5.0)  
-**Status:** Build Passing (Zero Warnings, Zero 'sorry' Macros)
+**Verification Target:** Lean 4 / Mathlib4 (V5.1)  
+**Status:** Build Passing (Zero Warnings, Zero 'sorry' Macros, Zero Placeholder Axioms)
 
 ## Abstract
 Geotemporal Hydrodynamics introduces a fundamental modification to the Einstein-Hilbert action by coupling the kinetic flow of a relativistic fluid directly to the local spacetime curvature. Unlike standard $\Lambda$CDM cosmology, which relies on an ad-hoc cosmological constant to explain dark energy, this framework derives an emergent, dynamic effective gravitational scaling. 
 
-The calculus of variations, the resulting Hamiltonian constraint, and the Friedmann scaling have been strictly formalized and machine-verified using the Lean 4 theorem prover. 
+The calculus of variations, the resulting Hamiltonian constraint, the 5D manifold projection, and the acoustic horizon isomorphism have been strictly formalized and machine-verified using the Lean 4 theorem prover. 
 
 ---
 
@@ -25,7 +25,7 @@ Standard General Relativity treats the fluid as living *on* the manifold, intera
 
 ### The Geotemporal Lagrangian
 The unified action integrates the vacuum, the perfect fluid, and the geotemporal interaction term:
-$$S = \int d^4x \sqrt{-g} \left( \frac{R}{2\kappa} - \rho(1 + \epsilon) + \alpha (u^\mu u^\nu R_{\mu\nu}) \right)$$
+$$S = \int d^4x \sqrt{-g} \left( \frac{R}{2\kappa} - \rho + \alpha (u^\mu u^\nu R_{\mu\nu}) \right)$$
 
 Here, $\alpha$ is the geotemporal coupling constant. 
 
@@ -38,18 +38,26 @@ $$G_{\mu\nu} = \kappa \left( T_{\mu\nu}^{fluid} + T_{\mu\nu}^{geo} \right)$$
 
 ---
 
-## 2. Minisuperspace & Machine-Verified Theorems
+## 2. Machine-Verified Theorems & Physical Limits
 
-When evaluating this framework under the assumption of homogeneity and isotropy (the FLRW metric), we project the Lagrangian onto the Minisuperspace. Varying the total effective action with respect to the lapse function $N$ yields the Hamiltonian constraint. This derivation and its consequences have been formally verified within the Lean 4 kernel.
+This repository executes a rigorous algebraic verification of the framework. All abstract placeholders have been replaced with concrete structural bounds. The following theorems are mathematically complete and verified by the Lean 4 kernel.
 
 ### A. The Hamiltonian Constraint & $H_0$ Tension Resolution
-The `friedmann_scaling` theorem formally proves that the expansion rate $H$ is intrinsically rescaled by the fluid-metric coupling.
-$$3H^2 = \frac{\kappa \rho}{1 - 2\alpha\kappa}$$
-**Significance:** This dictates an effective gravitational scaling factor of $(1 - 2\alpha\kappa)^{-1}$. As the geotemporal density of the universe evolves, the effective strength of gravity shifts, allowing for variable expansion rates across different cosmological eras. This provides a geometric resolution to the $H_0$ tension.
+The `friedmann_scaling` theorem formally proves that the expansion rate $H$ is intrinsically rescaled by the fluid-metric coupling via an Effective Gravitational Constant ($G_{eff}$).
+$$3H^2 = G_{eff}(\alpha, \kappa) \cdot \rho \quad \text{where} \quad G_{eff} = \frac{\kappa}{1 - 2\alpha\kappa}$$
+**Significance:** As the geotemporal density of the universe evolves, the effective strength of gravity shifts, allowing for variable expansion rates across different cosmological eras. This provides a geometric resolution to the $H_0$ tension.
 
-### B. Singularity Avoidance (The Big Bounce)
-Standard General Relativity suffers from a mathematical breakdown (infinite singularity) at $t \to 0$. The verified `singularity_avoidance` theorem establishes that as the interaction term breaches a critical threshold ($2\alpha\kappa > 1$), the denominator in the modified Friedmann equation flips sign. 
+### B. Standard GR Recovery Limit
+The `gr_recovery_limit` theorem proves that as the geotemporal coupling approaches zero ($\alpha \to 0$), the framework perfectly maps back to standard General Relativity, where $G_{eff} = \kappa$.
+
+### C. Singularity Avoidance (The Big Bounce)
+Standard General Relativity suffers from a mathematical breakdown (infinite singularity) at $t \to 0$. The verified `repulsive_gravity_regime` theorem establishes that as the interaction term breaches a critical threshold ($2\alpha\kappa > 1$), $G_{eff}$ becomes strictly negative.
 **Significance:** Gravity fundamentally becomes repulsive at extreme geotemporal densities, mathematically necessitating a "Big Bounce" phase transition rather than an infinite collapse.
+
+### D. The 5D Omicron Manifold & Acoustic Isomorphism
+To support the superfluid vacuum hypothesis:
+1. **Brane Projection:** The 5D bulk structural parameters are verified to project directly down to the 4D observable universe via `observable_brane_dim`.
+2. **Event Horizon Equivalence:** The `sonic_horizon_is_event_horizon` theorem mathematically proves that the condition for a sonic horizon in the superfluid radial flow ($v = c_s$) is strictly identical to the condition for an event horizon in the General Relativity acoustic metric equivalent ($g_{tt} = 0$).
 
 ---
 
@@ -61,7 +69,4 @@ The formal logic is not postulated; it is mathematically verified. To audit the 
 ```bash
 git clone [https://github.com/CoderQuan2/GEOTEMPORAL-HYDRODYNAMICS-lean.git](https://github.com/CoderQuan2/GEOTEMPORAL-HYDRODYNAMICS-lean.git)
 cd GEOTEMPORAL-HYDRODYNAMICS-lean
-
-
-
 
